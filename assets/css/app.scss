@@ -1,0 +1,11 @@
+/* This file is for your main application css. */
+
+@import "helpers/reset";
+@import "helpers/variables";
+@import "helpers/stripe";
+
+
+body {
+  background-color: $dark-blue;
+}
+

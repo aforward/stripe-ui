@@ -1,0 +1,112 @@
+
+.bordered {
+  border: 1px solid $light-blue;
+  border-radius: 10px;
+  padding: 10px 40px 10px 40px;
+}
+
+.stripe {
+
+  .container {
+    text-align: center;
+    margin: 50px auto;
+    padding: 60px 60px 30px 60px;
+    width: 400px;
+    background-color: $light-grey;
+    border: 1px solid $dark-blue;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: $handwritten-font;
+    font-size: 40px;
+  }
+
+  h2 {
+    text-align: center;
+    font-family: $serif-font;
+    font-size: 30px;
+  }
+
+  form {
+    font-family: $serif-font;
+    margin-top: 30px;
+  }
+
+  label {
+    margin: 10px 0 5px 0;
+    display: block;
+  }
+
+  input {
+    font-size: 15px;
+    border-radius: 3px;
+    margin: 4px 0 10px 0;
+  }
+
+  input {
+    padding: 10px;
+    color: #1B98E0;
+    border: 1px solid $medium-blue;
+
+    &:active, &:focus {
+      outline: 0px;
+      border: 1px solid darken($medium-blue, 10%);
+    }
+  }
+
+  #invoiceDescription {
+    width: 300px;
+  }
+
+  #invoiceAmount {
+    width: 80px;
+  }
+
+  .buttons {
+    margin-top: 20px;
+  }
+
+  button {
+    font-size: 15px;
+    font-family: $serif-font;
+    border-radius: 3px;
+    margin: 4px 0 10px 0;
+    padding: 10px 30px 10px 30px;
+
+    &.ready {
+      background-color: $medium-blue;
+      color: $light-grey;
+      border: 1px solid $medium-blue;
+      &:active, &:focus, &:hover {
+        outline: 0px;
+        color: $medium-blue;
+        background-color: $light-grey;
+        border: 1px solid $medium-blue;
+        cursor: pointer;
+      }
+    }
+
+    &.disabled {
+      background-size: contain;
+      background-color: $light-grey;
+      color: darken($light-grey, 10%);
+      border: 1px solid $medium-blue;
+      cursor: not-allowed;
+    }
+
+    &.waiting {
+      background: url("/images/spin.svg") no-repeat top center;
+      background-size: contain;
+      background-color: $light-grey;
+      color: darken($light-grey, 10%);
+      border: 1px solid $medium-blue;
+      cursor: default;
+      &:active, &:focus, &:hover {
+        outline: 0px;
+        background-color: $light-grey;
+        color: darken($light-grey, 10%);
+      }
+    }
+  }
+}
