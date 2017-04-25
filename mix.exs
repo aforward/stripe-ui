@@ -2,13 +2,16 @@ defmodule StripeUi.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :stripe_ui,
-     version: "0.0.1",
-     elixir: "~> 1.4",
-     elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :stripe_ui,
+      version: "0.0.1",
+      elixir: "~> 1.4",
+      elixirc_paths: elixirc_paths(Mix.env),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers,
+      start_permanent: Mix.env == :prod,
+      deps: deps(),
+      aliases: aliases(),
+    ]
   end
 
   # Configuration for the OTP application.
@@ -20,7 +23,10 @@ defmodule StripeUi.Mixfile do
   end
 
   def aliases() do
-    ["test.once": ["ecto.drop --quiet", "ecto.create --quiet", "ecto.migrate", "test"]]
+    [
+      "ecto.reset": ["ecto.drop --quiet", "ecto.create --quiet", "ecto.migrate"],
+      "test.once": ["ecto.reset", "test"],
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +45,7 @@ defmodule StripeUi.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:mix_test_watch, github: "aforward/mix-test.watch", only: :dev, runtime: false},
+      {:stripe_callbacks, "~> 0.4.0"},
     ]
   end
 end

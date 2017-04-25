@@ -5,12 +5,14 @@
 # is restricted to this project.
 use Mix.Config
 
+config :stripe_ui, ecto_repos: [StripeCallbacks.Repo]
+
 if Mix.env == :dev do
   config :mix_test_watch,
     setup_tasks: [
-      # "ecto.drop --quiet",
-      # "ecto.create --quiet",
-      # "ecto.migrate",
+      "ecto.drop --quiet",
+      "ecto.create --quiet",
+      "ecto.migrate",
     ],
     ansi_enabled: :ignore,
     clear: true

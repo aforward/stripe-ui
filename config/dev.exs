@@ -1,5 +1,13 @@
 use Mix.Config
 
+config :stripe_callbacks, StripeCallbacks.Repo, [
+  adapter: Ecto.Adapters.Postgres,
+  database: "stripe_ui_callbacks_#{Mix.env}",
+  username: "postgres",
+  password: "",
+  hostname: "localhost",
+]
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -47,3 +55,10 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+# Include your stripe development config, for example
+# config :stripe_post,
+#   secret_key: "sk_test_abc123",
+#   public_key: "pk_test_def456"
+
+import_config "dev.secret.exs"
