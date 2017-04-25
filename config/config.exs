@@ -5,6 +5,17 @@
 # is restricted to this project.
 use Mix.Config
 
+if Mix.env == :dev do
+  config :mix_test_watch,
+    setup_tasks: [
+      # "ecto.drop --quiet",
+      # "ecto.create --quiet",
+      # "ecto.migrate",
+    ],
+    ansi_enabled: :ignore,
+    clear: true
+end
+
 # Configures the endpoint
 config :stripe_ui, StripeUi.Web.Endpoint,
   url: [host: "localhost"],
