@@ -1,0 +1,24 @@
+<div class="stripe">
+  <div class="container bordered">
+    <div>
+      <h1>Customer</h1>
+      <h2>Membership Sign Up</h2>
+      <form id="stripeForm" action="/charge" method="POST">
+        <input id="stripePkey" type="hidden" value="<%= Application.get_env(:stripe_post, :public_key)%>">
+        <input id="invoiceCurrency" type="hidden" value="cad">
+        <input id="invoiceName" type="hidden" value="Payment Gateway">
+        <div>
+          <label>Description:</label>
+          <input id="invoiceDescription" name="invoiceDescription">
+        </div>
+        <div>
+          <label>Recurring Amount:</label>
+          <input id="invoiceAmount" type="number" step="any" min="0" name="invoiceAmount">
+        </div>
+        <div class="buttons">
+          <button id="stripeGo" data-mode="customer" class="btn ready">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

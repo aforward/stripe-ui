@@ -14,9 +14,10 @@ defmodule StripeUi.Web.Router do
   end
 
   scope "/", StripeUi.Web do
-    pipe_through :browser # Use the default browser stack
-
+    pipe_through :browser
     get "/", PageController, :index
+    get "/charge", ChargeController, :index
+    get "/customer", CustomerController, :index
   end
 
   scope "/api", StripeUi.Web do
