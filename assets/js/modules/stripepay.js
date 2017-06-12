@@ -18,25 +18,30 @@ export var Stripepay = (function () {
   }
 
   entity.handler = function() {
-    var mode = entity.btn.data("mode");
+    var mode = $("#stripeGo").data("mode");
     switch (mode) {
       case "charge":
         return entity.chargeHandler;
       case "customer":
         return entity.customerHandler;
+      case "token":
+        return entity.tokenHandler;
       default:
-        console.log("Unknown btn mode " + mode + " expected charge or customer");
+        console.log("Unknown mode " + mode + " expected charge or customer");
         return null;
     }
   }
 
-  entity.processToken = function(stripeToken) {
+  entity.postToken = function(mode, stripeToken, callbackFn) {
     $.ajax({
       type: "POST",
       url: "api/tokens",
-      data: {token: {"stripe": stripeToken, "invoice": entity.invoiceData}},
-    }).done(function() {
-      Form.disabled(entity.btn);
+      data: {
+        token: {stripe: stripeToken, invoice: entity.invoiceData},
+        mode: mode
+      }
+    }).done(function(token) {
+      callbackFn(token);
     });
   }
 
@@ -49,11 +54,31 @@ export var Stripepay = (function () {
       return entity.popup();
     });
 
+    entity.tokenHandler = StripeCheckout.configure({
+      key: $("#stripePkey").val(),
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      locale: 'auto',
+      token: function(stripeToken) {
+                entity.postToken("create", stripeToken, function(token){
+                  console.log("TOKEN CREATED");
+                  console.log(token);
+                  $("#stripeToken").html(token.data.stripe.id)
+                  Form.disabled(entity.btn);
+                });
+              }
+    });
+
     entity.chargeHandler = StripeCheckout.configure({
       key: $("#stripePkey").val(),
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
-      token: entity.processToken
+      token: function(stripeToken) {
+                entity.postToken("process", stripeToken, function(token){
+                  console.log("TOKEN CHARGED");
+                  console.log(token);
+                  Form.disabled(entity.btn);
+                });
+              }
     });
 
     // Thank you https://www.masteringmodernpayments.com/blog/using-stripe-checkout-for-subscriptions
@@ -63,7 +88,13 @@ export var Stripepay = (function () {
       locale: 'auto',
       panelLabel: "Subscribe",
       allowRememberMe: false,
-      token: entity.processToken
+      token: function(stripeToken) {
+                entity.postToken("process", stripeToken, function(token){
+                  console.log("CUSTOMER CREATED");
+                  console.log(token);
+                  Form.disabled(entity.btn);
+                });
+              }
     });
 
     window.addEventListener('popstate', function() {

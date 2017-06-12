@@ -1,7 +1,44 @@
 <div class="home">
-
   <div class="container">
-    <h1>Stripe API Integration</h1>
+    <div class="row">
+      <div class="col-12">
+        <h1>Stripe API Integration</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="btn">
+          <%= link "Make a Payment", to: charge_path(@conn, :index) %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="btn">
+          <%= link "Create Customer", to: customer_path(@conn, :index) %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="btn">
+          <%= link "Create a Token", to: token_path(@conn, :index) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>Stripe API Integration</h1>
+      </div>
+    </div>
     <div class="row">
       <div class="col-6">
         <%= link "Make a Payment", to: charge_path(@conn, :index) %>
@@ -10,5 +47,14 @@
         <%= link "Create a Customer", to: customer_path(@conn, :index) %>
       </div>
     </div>
+    <div class="row">
+      <div class="col-6">
+        <%= link "Create a Token", to: charge_path(@conn, :index) %>
+      </div>
+      <div class="col-6 btn-container">
+        <%= link "Analyze a Token", to: customer_path(@conn, :index) %>
+      </div>
+    </div>
   </div>
 </div>
+-->

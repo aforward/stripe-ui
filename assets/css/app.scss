@@ -2,9 +2,9 @@
 
 @import "helpers/reset";
 @import "helpers/variables";
+@import "helpers/simple_grid";
 @import "helpers/home";
 @import "helpers/stripe";
-
 
 body {
   background-color: $dark-blue;

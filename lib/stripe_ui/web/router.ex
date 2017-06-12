@@ -18,11 +18,11 @@ defmodule StripeUi.Web.Router do
     get "/", PageController, :index
     get "/charge", ChargeController, :index
     get "/customer", CustomerController, :index
+    get "/token", TokenController, :index
   end
 
   scope "/api", StripeUi.Web do
     pipe_through :api
-    get "/tokens", TokenController, :index
     post "/tokens", TokenController, :create
   end
 
