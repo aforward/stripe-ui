@@ -4,13 +4,17 @@ export var Stripepay = (function () {
 
   var entity = {};
 
+  entity.toPennies = function(inDollars) {
+    return Math.floor(parseFloat(inDollars) * 100);
+  }
+
   entity.popup = function()
   {
     Form.waiting(entity.btn);
     entity.invoiceData = {
       name: $("#invoiceName").val(),
       description: $("#invoiceDescription").val(),
-      amount: parseFloat($("#invoiceAmount").val()) * 100,
+      amount: entity.toPennies($("#invoiceAmount").val()),
       currency: $("#invoiceCurrency").val(),
     };
     entity.handler().open(entity.invoiceData);
