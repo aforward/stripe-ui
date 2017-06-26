@@ -45,7 +45,7 @@ defmodule StripeUi.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:mix_test_watch, github: "aforward/mix-test.watch", only: :dev, runtime: false},
-      {:stripe_callbacks, "~> 0.5.0"},
+      {:stripe_callbacks, "~> 0.5.1"},
     ]
   end
 end
